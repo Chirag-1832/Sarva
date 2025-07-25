@@ -84,7 +84,7 @@ Retrieve a list of submitted forms.
 
 ##  Postman Collection
 
-A Postman collection is included in the repo as `KPA_form_data.postman_collection.json`.  
+A Postman collection is included in the repo as `wheel_specifications.postman_collection.json`.  
 You can import it into Postman and test all the API routes easily.
 
 ---
