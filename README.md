@@ -35,7 +35,12 @@ Login to psql and run the following:
 ### 4. Create a .env file  
 In the project root directory, create a `.env` file with:
 
-DATABASE_URL=postgresql://kpa_user:your_password@localhost/kpa_db
+DB_HOST=<Your_Host_Name>
+DB_PORT=<Your_Port>
+DB_NAME=<Your_DB_Name>
+DB_USER= <Your_user>
+DB_PASS=<Your_Password>
+
 
 ### 5. Run the application  
 Start the FastAPI app using:  
