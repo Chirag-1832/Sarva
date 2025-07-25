@@ -1,69 +1,104 @@
 #  KPA Forms API (Wheel Specifications)
 
-A FastAPI backend to submit and retrieve wheel specification forms, connected to a PostgreSQL database and documented using Swagger UI.
+A FastAPI backend to submit and retrieve wheel specification forms, connected to PostgreSQL and documented with Swagger.
 
 ---
 
 ##  Tech Stack
 
-- **FastAPI** – High-performance Python web framework  
-- **SQLAlchemy** – ORM for database interaction  
-- **PostgreSQL** – Relational database  
+- **FastAPI** – Web framework  
+- **SQLAlchemy** – ORM  
+- **PostgreSQL** – Database  
 - **Pydantic** – Data validation  
 - **Uvicorn** – ASGI server  
 
 ---
 
-##  Features
+## ⚙️ Setup Instructions
 
-- Submit new wheel specification forms  
-- Retrieve forms filtered by:
-  - `formNumber`
-  - `submittedBy`
-  - `submittedDate`  
-- Swagger UI for API testing  
-- PostgreSQL integration using SQLAlchemy ORM  
+### 1. Install dependencies  
+Install Python packages using  
+pip install -r requirements.txt
+
+### 2. Install PostgreSQL  
+Download and install PostgreSQL from the official website:  
+https://www.postgresql.org/download/  
+(Mac users can also use: brew install postgresql)
+
+### 3. Create PostgreSQL Database and User  
+Login to psql and run the following:
+
+- CREATE DATABASE kpa_db;
+- CREATE USER kpa_user WITH PASSWORD 'your_password';
+- GRANT ALL PRIVILEGES ON DATABASE kpa_db TO kpa_user;
+
+### 4. Create a .env file  
+In the project root directory, create a `.env` file with:
+
+DATABASE_URL=postgresql://kpa_user:your_password@localhost/kpa_db
+
+### 5. Run the application  
+Start the FastAPI app using:  
+uvicorn app.main:app --reload
+
+Swagger UI will be available at:  
+http://127.0.0.1:8000/docs
 
 ---
 
-## ⚙️ Getting Started
+##  API Endpoints
 
-###  Prerequisites
+###  POST /api/forms/wheel-specifications  
+Submit a new wheel specification form.
 
-Make sure the following are installed:
+- **Request Body:**
+  - formNumber (string)
+  - submittedBy (string)
+  - submittedDate (string, format YYYY-MM-DD)
+  - fields (object containing all wheel specification fields)
 
-- Python 3.9 or higher  
-- PostgreSQL  
+- **Response:**  
+  - success: true  
+  - message: "Wheel specification submitted successfully"  
+  - data: Form summary
 
-To install PostgreSQL:
+- **Error:**  
+  - 400 Bad Request if formNumber already exists
 
-- [Download for Windows/Linux/macOS](https://www.postgresql.org/download/)  
-- For macOS using Homebrew: brew install postgresql
+---
 
-### Clone the Repository
+###  GET /api/forms/wheel-specifications  
+Retrieve a list of submitted forms.
 
-git clone https://github.com/Chirag-1832/Sarva.git
-cd Sarva/kpa_backend
+- **Optional Query Parameters:**
+  - formNumber
+  - submittedBy
+  - submittedDate
 
-### Install the Dependencies
- - pip install -r requirements.txt
+- **Response:**  
+  - success: true  
+  - message: "Filtered wheel specification forms fetched successfully"  
+  - data: List of form summaries
 
-### Set Up PostgreSQL
+---
 
-### Create a .env File
+##  Postman Collection
 
-### Run the Server
-- uvicorn app.main:app --reload
+A Postman collection is included in the repo as `KPA_form_data.postman_collection.json`.  
+You can import it into Postman and test all the API routes easily.
 
-### API Documentation
-- http://127.0.0.1:8000/docs
+---
 
-### Author
+##  Limitations & Assumptions
 
-Master Oogway
+- No authentication or user validation implemented  
+- PostgreSQL must be pre-installed and running locally  
+- Assumes .env is configured properly with DB credentials  
+- Swagger UI available only in development (--reload mode)
 
+---
 
+##  Author
 
-
-
-
+Built by **Master Oogway** 🐢  
+GitHub: [https://github.com/Chirag-1832](https://github.com/Chirag-1832)
