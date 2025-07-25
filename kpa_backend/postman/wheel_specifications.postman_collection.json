@@ -1,0 +1,76 @@
+{
+  "info": {
+    "_postman_id": "a0e12b3c-8123-432d-9445-b36ff6a24b77",
+    "name": "Wheel Specification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Wheel Specification",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"formNumber\": \"used_id_123\",\n  \"submittedBy\": \"Chirag Arora\",\n  \"submittedDate\": \"2025-07-25\",\n  \"fields\": {\n    \"treadDiameterNew\": \"950\",\n    \"lastShopIssueSize\": \"910\",\n    \"condemningDia\": \"850\",\n    \"wheelGauge\": \"1676\",\n    \"variationSameAxle\": \"2\",\n    \"variationSameBogie\": \"3\",\n    \"variationSameCoach\": \"5\",\n    \"wheelProfile\": \"S-profile\",\n    \"intermediateWWP\": \"30\",\n    \"bearingSeatDiameter\": \"100\",\n    \"rollerBearingOuterDia\": \"120\",\n    \"rollerBearingBoreDia\": \"90\",\n    \"rollerBearingWidth\": \"40\",\n    \"axleBoxHousingBoreDia\": \"130\",\n    \"wheelDiscWidth\": \"60\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/forms/wheel-specifications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "forms",
+            "wheel-specifications"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201 Created",
+          "originalRequest": {},
+          "status": "Created",
+          "code": 201,
+          "body": "{\n  \"success\": true,\n  \"message\": \"Wheel specification submitted successfully\",\n  \"data\": {\n    \"formNumber\": \"used_id_123\",\n    \"submittedBy\": \"Chirag Arora\",\n    \"submittedDate\": \"2025-07-25\",\n    \"status\": \"Saved\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Wheel Specifications",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/forms/wheel-specifications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "forms",
+            "wheel-specifications"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"success\": true,\n  \"message\": \"Filtered wheel specification forms fetched successfully\",\n  \"data\": [\n    {\n      \"formNumber\": \"used_id_123\",\n      \"submittedBy\": \"Chirag Arora\",\n      \"submittedDate\": \"2025-07-25\",\n      \"fields\": {\n        \"treadDiameterNew\": \"950\",\n        \"lastShopIssueSize\": \"910\",\n        \"condemningDia\": \"850\",\n        \"wheelGauge\": \"1676\"\n      }\n    }\n  ]\n}"
+        }
+      ]
+    }
+  ]
+}
